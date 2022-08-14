@@ -72,15 +72,3 @@ FUNCT_WRANGLE_ROW <- function(df_raw_input3){
     return(igra)
   }
 }
-
-###### FINAL FUNCTION 1 #####
-FUNCT1_ORGANIZE_DATA <- function(persnet_df) {
-  #this function takes in a persnet df and returns a list of igraph objects
-  df_as_list <- persnet_df %>%
-    mutate(index=1:n()) %>%
-    group_split(index)
-  
-  return(
-    lapply(df_as_list, FUNCT_WRANGLE_ROW)
-  )
-}

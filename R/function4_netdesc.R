@@ -1,15 +1,15 @@
 #' @title
-#' Organizer
+#' Network descriptives of persnet data object
 #'
 #' @description
-#' Organize persnet csv file into igraph objects
+#' Computes network statistics of persnet data object
 #'
 #' @details
 #'
 #' @param persnet_list_igra
 #'
 #' @export
-net_describe_pnd <- function(persnet_list_igra) {
+net_desc_pnd <- function(persnet_list_igra) {
   no_null_persnet_list_igra <- persnet_list_igra[!sapply(persnet_list_igra,is.null)]
 
   net_desc_list <- list()
