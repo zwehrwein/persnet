@@ -8,13 +8,13 @@ Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 Depends:
   R (>= 3.6.0),
-  tidyverse (>= 1.3.1),
+  dplyr (>= 1.0.7),
   ggraph (>= 2.0.5),
   tidygraph (>= 1.2.0),
   igraph (>= 1.3.1)
 Imports:
   gridExtra,
-  tidyverse,
+  dplyr,
   ggraph,
   tidygraph,
   igraph,

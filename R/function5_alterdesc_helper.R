@@ -25,7 +25,6 @@ RAW_DF_ROW2PER_DF_ROW <- function(persnet_dataframe) {
   alter_neg_per <- round(length(which(neg_cols == 1)) /
                                length(which(neg_cols == 1 | neg_cols == 0)),2)
 
-
   #types of support
   supptype_cols <- persnet_dataframe %>% select(name1supptype___1:name15supptype___5)
 
