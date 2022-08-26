@@ -54,3 +54,6 @@ scale_edge_colour_manual(
   theme_graph()
   return(tg_plot)
 }
+redcap_id_extractor <- function(igra_object) {
+  return(igra_object$redcap_id)
+}

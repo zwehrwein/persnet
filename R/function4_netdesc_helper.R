@@ -1,11 +1,11 @@
 #' @title
 #' Organize net descriptive functions. Not exported.
-#' 
-#' @description 
-#' 
 #'
-#' @details 
-#' 
+#' @description
+#'
+#'
+#' @details
+#'
 #' @param persnet_df
 #'
 #' @import tidyverse
@@ -16,6 +16,9 @@
 #'
 funct_count_more_names <- function(persnet_datarow) {
 
+  specified_names <- persnet_datarow %>% select(name1:name15)
+  list_specified_names <- unlist(strsplit(as.character(specified_names),split = ","))
+
   string_more_names1 <- persnet_datarow %>% select(contains("more_names_1"))
   string_more_names2 <- persnet_datarow %>% select(contains("more_names_2"))
   string_more_names3 <- persnet_datarow %>% select(contains("more_names_3"))
@@ -24,7 +27,7 @@ funct_count_more_names <- function(persnet_datarow) {
   list_more_names2 <- unlist(strsplit(as.character(string_more_names2),split = ","))
   list_more_names3 <- unlist(strsplit(as.character(string_more_names3),split = ","))
 
-  list_all_names <- c(list_more_names1,list_more_names2,list_more_names3)
+  list_all_names <- c(list_specified_names,list_more_names1,list_more_names2,list_more_names3)
   list_all_names
 
   #remove na
@@ -58,9 +61,16 @@ effective.size <- function(tg_graph) {
   t <- ecount(tg_graph)
   return(n - (2 * t) / n)
 }
+egoless_density <- function(tg_graph) {
+  return(graph.density(remove_ego_from_igraph(tg_graph)))
+}
 max.degree <- function(tg_graph) {
-  return(max(degree(tg_graph)))
+  return(min(degree(remove_ego_from_igraph(tg_graph))))
 }
 min.degree <- function(tg_graph) {
-  return(min(degree(tg_graph)))
+  return(min(degree(remove_ego_from_igraph(tg_graph))))
+}
+remove_ego_from_igraph <- function(tg_graph){
+  tg_graph_egoless <- tg_graph %>% delete_vertices("EGO")
+  return(tg_graph_egoless)
 }
