@@ -19,6 +19,8 @@ net_desc_pnd <- function(persnet_dataframe) {
   igra_nodes_counts <- unlist(sapply(no_null_persnet_list_igra,gorder))
   more_names_counts <- funct_count_more_names_whole_dataframe(persnet_dataframe)
   network_size_counts <- igra_nodes_counts + more_names_counts
+
+  net_desc_list$record_id <- persnet_dataframe$record_id
   net_desc_list$size <- network_size_counts
   net_desc_list$edges = unlist(lapply(no_null_persnet_list_igra,gsize))
   net_desc_list$density = unlist(lapply(no_null_persnet_list_igra,graph.density))

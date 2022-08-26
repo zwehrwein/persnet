@@ -1,14 +1,14 @@
 #' @title
 #' Organize helper functions. Not exported.
-#' 
-#' @description 
+#'
+#' @description
 #' Organize persnet csv file into igraph objects
 #'
-#' @details 
-#' 
+#' @details
+#'
 #' @param persnet_df
 #'
-#' @import tidyverse
+#' @import dplyr
 #' @import tidygraph
 #' @import igraph
 #'
@@ -43,8 +43,8 @@ FUNC_CREATE_ATTRIBUTE <- function(col_name,df_row_input2) {
   return(
     unname(
       unlist(
-        df_row_input2 %>% 
-          select(contains("name")) %>% 
+        df_row_input2 %>%
+          select(contains("name")) %>%
           select(contains(col_name))))
   )
 }
@@ -56,10 +56,10 @@ FUNCT_WRANGLE_ROW <- function(df_raw_input3){
   mat <- matrix(NA,16,16)
   diag(mat) <- 0
   mat[lower.tri(mat)] <- edges_values
-  mat <- t(mat) 
+  mat <- t(mat)
   mat[lower.tri(mat)] <- edges_values
   colnames(mat) <- rownames(mat) <- c("EGO", "ALT1", "ALT2", "ALT3",
-                                      "ALT4", "ALT5", "ALT6", "ALT7", 
+                                      "ALT4", "ALT5", "ALT6", "ALT7",
                                       "ALT8", "ALT9", "ALT10", "ALT11",
                                       "ALT12", "ALT13", "ALT14", "ALT15")
   mat <- mat[(!colSums(mat, 1) == 0), (!colSums(mat, 1) == 0)]
@@ -69,6 +69,11 @@ FUNCT_WRANGLE_ROW <- function(df_raw_input3){
   }else{
     V(igra)$node_id <- colnames(mat)
     V(igra)$alter_dummy <- ifelse(colnames(mat)=='EGO',0,1)
+    #sometimes referred to as redcap record and elsewhere as record_id
+    ##this could be selected by selecting first column, whatever it is.
+    #V(igra)$
+    #graph_attr(igra)$record_id <- df_raw_input3$record_id
+    igra <- set_graph_attr(igra,"redcap_id",df_raw_input3$record_id)
     return(igra)
   }
 }

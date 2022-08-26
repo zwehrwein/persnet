@@ -1,11 +1,11 @@
 #' @title
 #' Organizer
-#' 
-#' @description 
+#'
+#' @description
 #' Organize persnet csv file into igraph objects
 #'
-#' @details 
-#' 
+#' @details
+#'
 #' @param persnet_df
 #'
 #' @import tidyverse
@@ -15,7 +15,7 @@
 organize_pnd <- function(persnet_df) {
   df_as_list <- persnet_df %>%
     mutate(index=1:n()) %>%
-    group_split(index)
+    dplyr::group_split(index)
   return(
     lapply(df_as_list, FUNCT_WRANGLE_ROW)
   )

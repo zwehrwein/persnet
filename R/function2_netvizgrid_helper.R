@@ -15,9 +15,8 @@
 #'
 #' @examples
 #'
-#' @export
 #'
-viz_single_pnd <- function(igra_object) {
+viz_grid_pnd_helper <- function(igra_object) {
   #this function visualizes an igraph object
   tg_plot <- as_tbl_graph(igra_object) %>%
   activate(edges) %>%
@@ -52,7 +51,6 @@ scale_edge_colour_manual(
     size=4,
     show.legend = F) +
   scale_colour_manual(values = c('black','grey66'))+
-  theme_graph() +
-    ggtitle(paste("Record ID:",igra_object$redcap_id))
+  theme_graph()
   return(tg_plot)
 }
