@@ -65,7 +65,7 @@ egoless_density <- function(tg_graph) {
   return(graph.density(remove_ego_from_igraph(tg_graph)))
 }
 max.degree <- function(tg_graph) {
-  return(min(degree(remove_ego_from_igraph(tg_graph))))
+  return(max(degree(remove_ego_from_igraph(tg_graph))))
 }
 min.degree <- function(tg_graph) {
   return(min(degree(remove_ego_from_igraph(tg_graph))))

@@ -1,11 +1,11 @@
 #' @title
 #' Compositional descriptives helper functions. Does not export to user
-#' 
-#' @description 
+#'
+#' @description
 #' Organize persnet csv file into igraph objects
 #'
-#' @details 
-#' 
+#' @details
+#'
 #' @param persnet_dataframe
 #'
 #' @import tidyverse

@@ -1,7 +1,7 @@
 Package: persnet
 Type: Package
 Title: personal
-Version: 0.1.0
+Version: 0.5.0
 Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
