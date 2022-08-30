@@ -57,10 +57,24 @@ funct_constraint_ego <- function(tg_graph) {
   return(constraint_scores[1])
 }
 effective.size <- function(tg_graph) {
-  n <- vcount(tg_graph)
-  t <- ecount(tg_graph)
-  return(n - (2 * t) / n)
-}
+  #adopted from influenceR package
+  if (!igraph::is_igraph(tg_graph)) {
+    stop("Not a graph object")
+  }
+  A <- igraph::get.adjacency(tg_graph)   # This will be sparse, which is great.
+  S <- Matrix::crossprod(A)       # S[i,j] = # of shared neighbors between i,j
+  Q <- A * S              # Q[i,j] = # of shared neighbors if i and j are neighbors, 0 else
+  qsum <- Matrix::rowSums(Q)
+  deg <- Matrix::rowSums(A)
+  ens <- deg - (qsum / deg)
+  ens[is.nan(ens)] <- 0 # If a vertex has no neighbors, make its ENS 0
+  names(ens) <- igraph::V(g)$name
+  ens_ego <- ens[names(ens)=="EGO"]
+  return(ens_ego)
+  }
+
+
+
 egoless_density <- function(tg_graph) {
   return(graph.density(remove_ego_from_igraph(tg_graph)))
 }
