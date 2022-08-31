@@ -68,12 +68,10 @@ effective.size <- function(tg_graph) {
   deg <- Matrix::rowSums(A)
   ens <- deg - (qsum / deg)
   ens[is.nan(ens)] <- 0 # If a vertex has no neighbors, make its ENS 0
-  names(ens) <- igraph::V(g)$name
+  names(ens) <- igraph::V(tg_graph)$name
   ens_ego <- ens[names(ens)=="EGO"]
   return(ens_ego)
   }
-
-
 
 egoless_density <- function(tg_graph) {
   return(graph.density(remove_ego_from_igraph(tg_graph)))
