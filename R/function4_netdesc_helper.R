@@ -16,9 +16,30 @@
 #'
 funct_count_more_names <- function(persnet_datarow) {
 
-  specified_names <- persnet_datarow %>% select(name1:name15)
-  list_specified_names <- unlist(strsplit(as.character(specified_names),split = ","))
+  #specified columns and those that are then removed later
+  select_list_names <- persnet_datarow %>% select(name1, name2, name3, name4, name5,
+                                         name6, name7, name8, name9, name10, name11,
+                                         name12, name13, name14, name15)
 
+  list_named_df <- as.data.frame(t(select_list_names))
+  list_named_df
+
+  #which names should be removed
+  keep_names_list <- persnet_datarow %>% select(name_1:name_15)
+  keep_names_list_df <- data.frame(t(keep_names_list))
+  colnames(keep_names_list_df) = "Value"
+
+  names_combined_df <- cbind(list_named_df, keep_names_list_df)
+  names_combined_df[complete.cases(names_combined_df), ]
+  names_combined_keep <- split(names_combined_df, names_combined_df$Value == 1)$`TRUE`
+
+  #specified_names <- persnet_datarow %>% select(name1, name2, name3, name4, name5,
+  #                                            name6, name7, name8, name9, name10,
+  #                                            name11, name12, name13, name14, name15)
+
+  list_specified_names <- unlist(strsplit(as.character( names_combined_keep$V1),split = ","))
+
+  #more names columns
   string_more_names1 <- persnet_datarow %>% select(contains("more_names_1"))
   string_more_names2 <- persnet_datarow %>% select(contains("more_names_2"))
   string_more_names3 <- persnet_datarow %>% select(contains("more_names_3"))
