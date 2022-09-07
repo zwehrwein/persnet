@@ -16,7 +16,8 @@ net_desc_pnd <- function(persnet_dataframe) {
   net_desc_list <- list()
 
   net_desc_list$record_id <- persnet_dataframe$record_id
-  net_desc_list$alter_count <- funct_count_more_names_whole_dataframe(persnet_dataframe)
+  #net_desc_list$alter_count <- funct_count_more_names_whole_dataframe(persnet_dataframe)
+  net_desc_list$alter_count <- funct_calculate_size_dataframe(persnet_dataframe)
   net_desc_list$edges = unlist(lapply(no_null_persnet_list_igra,gsize))
   net_desc_list$density = unlist(lapply(no_null_persnet_list_igra,egoless_density))
   net_desc_list$net_constraint = unname(unlist(lapply(no_null_persnet_list_igra,funct_constraint_ego)))
