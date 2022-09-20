@@ -194,22 +194,46 @@ funct_constraint_ego <- function(tg_graph) {
   constraint_scores <- constraint(tg_graph)
   return(constraint_scores[1])
 }
-effective.size <- function(tg_graph) {
-  #adopted from influenceR package
-  if (!igraph::is_igraph(tg_graph)) {
-    stop("Not a graph object")
+#effective.size <- function(tg_graph) {
+#  #adopted from influenceR package
+#  if (!igraph::is_igraph(tg_graph)) {
+#    stop("Not a graph object")
+#  }
+#  A <- igraph::get.adjacency(tg_graph)#, attr='weight')   # This will be sparse, which is great.
+#  S <- Matrix::crossprod(A)       # S[i,j] = # of shared neighbors between i,j
+#  Q <- A * S              # Q[i,j] = # of shared neighbors if i and j are neighbors, 0 else
+#  qsum <- Matrix::rowSums(Q)
+#  deg <- Matrix::rowSums(A)
+#  ens <- deg - (qsum / deg)
+#  ens[is.nan(ens)] <- 0 # If a vertex has no neighbors, make its ENS 0
+#  names(ens) <- igraph::V(tg_graph)$name
+#  ens_ego <- ens[names(ens)=="EGO"]
+#  return(ens_ego)
+#  }
+
+effective.size <- function(tg_graph){
+  #imported from 'egonet' package
+  dati <- get.adjacency(tg_graph,attr='weight')
+  n <- dim(dati)[1]
+  if(n < 2) return(NaN)
+  Sj <- 0
+  for( y in 2:n)          Sj <- Sj + (dati['EGO',y] + dati[y,'EGO'])
+  ris <- 0
+  for ( j in 2: n){
+    cont1 <- setdiff(1:n,j)
+    Vetmax <- rep(NA,(length(cont1)))
+    for (k in setdiff(1:n,j)){ Vetmax[k] <- (dati[j,k] +dati[k,j])}
+    massimo <- max(Vetmax,na.rm=T)
+    sumPM <- 0
+    for(f in setdiff(2:n,j) ){ #f=q in formula originale
+      Piq <- (dati['EGO', f] + dati[f,'EGO'])/ Sj
+      Mjq <- (dati[j,f] + dati[f,j])/ massimo
+      sumPM <- sumPM +Piq * Mjq
+    }
+    ris <- ris + (1 - (sumPM))
   }
-  A <- igraph::get.adjacency(tg_graph)   # This will be sparse, which is great.
-  S <- Matrix::crossprod(A)       # S[i,j] = # of shared neighbors between i,j
-  Q <- A * S              # Q[i,j] = # of shared neighbors if i and j are neighbors, 0 else
-  qsum <- Matrix::rowSums(Q)
-  deg <- Matrix::rowSums(A)
-  ens <- deg - (qsum / deg)
-  ens[is.nan(ens)] <- 0 # If a vertex has no neighbors, make its ENS 0
-  names(ens) <- igraph::V(tg_graph)$name
-  ens_ego <- ens[names(ens)=="EGO"]
-  return(ens_ego)
-  }
+  ris
+}
 
 egoless_density <- function(tg_graph) {
   return(graph.density(remove_ego_from_igraph(tg_graph)))
