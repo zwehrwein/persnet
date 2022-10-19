@@ -32,7 +32,7 @@ This function takes in a persnet dataframe and returns a dataframe containing th
 
 \author{
 %Weihua An \email{weihuaan@indiana.edu}; Yu-Hsin Liu \email{yuhsliu@indiana.edu}
-Zachary Wehrwein - \email{zwehrwein@bwh.harvard.edu}; Amar Dhand - \email{zwehrwein@bwh.harvard.edu}
+Zachary Wehrwein - \email{zwehrwein@bwh.harvard.edu}; Amar Dhand - \email{adhand@bwh.harvard.edu}
 }
 \references{
 
