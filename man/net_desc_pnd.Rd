@@ -10,5 +10,40 @@ net_desc_pnd(persnet_dataframe)
 \item{persnet_dataframe}{}
 }
 \description{
-Computes network statistics of persnet data object
+This function takes in a persnet dataframe and returns a dataframe containing the following columns:
+
+\enumerate{
+\item \emph{record_id} - The respondent's id in REDcap.
+\item \emph{alter_count} - The number of total unique names listed by the respondent in response to the ``Who do you discuss personal matters with?'' name generator as well the open-ended ``more names.'' questions. Consequently, this number is *not* the same as igraph::vcount() as the names listed in the ``more names'' questions are not incorpotaed into the igraph objects themselves.
+\item \emph{edges} - The number of ties in the respondent's egonet. Ranges from 105 (a complete graph in which every person in the egonet knows each other) to 0 (the respondent is an isolate who listed no contacts).
+\item \emph{density} - The portion of ties actually realized out of all possible ties.
+\item \emph{net_constraint} - Burt's (1992) measure of the extent to which a respondant's contacts are redundant. Contacts are said to be redundant if they are connected amongst themselves and thus even if a respondent has many unqiue alters, those alters may not posses unqiue information.
+%sufficient, need to conain step by step of calculation?
+\item \emph{net_effective_size} - Effective network size  the number of alters that the respondent has, less the average number of ties that each alter has to other alters.
+\item \emph{max_degree} - The maximum number of adjacent edges out of any nodes in the egonet.
+\item \emph{min_degree} - The minimum number of adjacent edges out of any nodes in the egonet.
+\item \emph{avg_path_length} - The average distance separating any two nodes in the egonet.
+
+%\deqn{e(u) = \sum_{v \in N(u) \setminus \{u\}}
+%       \left(1 - \sum_{w \in N(v)} p_{uw} m_{vw}\right)}
+
 }
+}
+
+\author{
+%Weihua An \email{weihuaan@indiana.edu}; Yu-Hsin Liu \email{yuhsliu@indiana.edu}
+Zachary Wehrwein - \email{zwehrwein@bwh.harvard.edu}; Amar Dhand - \email{zwehrwein@bwh.harvard.edu}
+}
+\references{
+
+Burt, Ronald. 1992. Structural Holes: The Social Structure of Competition. Harvard University Press.
+
+Burt, Ronald. 2000. Structural Holes versus Network Closure as Social Capital. https://snap.stanford.edu/class/cs224w-readings/burt00capital.pdf
+
+Burt, Ronald. 2008. Measuring Access to Structural Holes. http://ronaldsburt.com/research/files/NNappB.pdf
+
+
+\seealso{
+%\code{\link{kpcent}}
+}
+

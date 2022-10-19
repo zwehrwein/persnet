@@ -7,8 +7,37 @@
 alter_desc_pnd(persnet_df)
 }
 \arguments{
-\item{persnet_list_igra}{}
+%\item{persnet_df}{}
 }
 \description{
-Computes percentage compositions of various alter characteristics in a persnet data object
+Computes the composition percentages of the default persnet alter characteristics. These including the following:
+
+\enumerate{
+\item \emph{record_id} - The respondent's id in REDcap.
+
+\item \emph{alter_support_per} - The proportion of alters that the respondent said provided some support and encouraged them to stay healthy.
+\item \emph{alter_neg_per} - The proportion of alters that the respondent said had a negative influence on their health.
+
+\item \emph{support_emotional_per} - The proportion of alters that the respondent said provided emotional support and helped ``manage personal situations.''
+\item \emph{support_advice_per} - The proportion of alters that the respondent said provided advice on things like career choices or where to live.
+\item \emph{support_finance_per} - The proportion of alters that the respondent said provided advice or direct help with personal finances.
+\item \emph{support_health_per} - The proportion of alters that the respondent said provided help with regards to medical treatment.
+\item \emph{support_camaraderie_per} - The proportion of alters that the respondent said provided ``support through understanding important experiences that you have had together.''
+\item \emph{gender_male_per} - The proportion of alters that the respondent said are male.
+\item \emph{race_white_per} - The proportion of alters that the respondent said are, in terms of their race, white.
+\item \emph{edu_hs_per} - The proportion of alters that the respondent said have a high school diploma.
+
+\item \emph{relation_spouse_per} - The propotion of alters that the respondent classified as their spouse.
+\item \emph{relation_family_per} - The propotion of alters that the respondent classified as a family member.
+\item \emph{relation_friend_per} - The propotion of alters that the respondent classified as a friend.
+\item \emph{relation_advice_per} - The propotion of alters that the respondent classified as an adviser.
+\item \emph{relat_coworker_per} - The propotion of alters that the respondent classified as a coworker.
+\item \emph{relat_other_per} - The propotion of alters that the respondent classified in the ``other'' category.
+
+\item \emph{less15miles_per} - The propotion of alters that the respondent said live less than 15 miles from them.
+\item \emph{fewer6years_per} - The propotion of alters that the respondent said they have known for less than six years.
+\item \emph{speakweekly_per} - The propotion of alters that the respondent said they speak on average weekly with.
+\enumerate}
+
+%The code to compute this table can be modified provided if any
 }

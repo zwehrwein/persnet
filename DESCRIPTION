@@ -1,9 +1,9 @@
 Package: persnet
 Type: Package
 Title: personal
-Version: 0.6.2
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
+Version: 0.7
+Author: Zachary Wehrwein
+Maintainer: <zwehrwein@bwh.harvard.edu>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 Depends:
