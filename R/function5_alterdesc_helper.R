@@ -20,33 +20,40 @@ RAW_DF_ROW2PER_DF_ROW <- function(persnet_dataframe) {
   #support and negative
   support_cols <- persnet_dataframe %>% select(name1support:name15support)
   alter_support_per <- round(length(which(support_cols == 1)) /  #scales::percent(
-                                length(which(support_cols == 1 | support_cols == 0)),2)
+                                sum(persnet_dataframe %>% select(name_1:name_15))
+                                ,2)
   neg_cols <- persnet_dataframe %>% select(name1neg:name15neg)
   alter_neg_per <- round(length(which(neg_cols == 1)) /
-                               length(which(neg_cols == 1 | neg_cols == 0)),2)
+                               sum(persnet_dataframe %>% select(name_1:name_15))
+                               ,2)
 
   #types of support
   supptype_cols <- persnet_dataframe %>% select(name1supptype___1:name15supptype___5)
 
   supptype_emotional <- supptype_cols[, grepl("___1", names(supptype_cols))]
   support_emotional_per <-  round(length(which(supptype_emotional == 1)) /
-                    length(which(supptype_emotional == 1 | supptype_emotional == 0)),2)
+                    sum(persnet_dataframe %>% select(name_1:name_15))
+                    ,2)
 
   supptype_advice <- supptype_cols[, grepl("___2", names(supptype_cols))]
   support_advice_per <-  round(length(which(supptype_advice == 1)) /
-                    length(which(supptype_advice == 1 | supptype_advice == 0)),2)
+                    sum(persnet_dataframe %>% select(name_1:name_15))
+                    ,2)
 
   supptype_finance <- supptype_cols[, grepl("___3", names(supptype_cols))]
   support_finance_per <-  round(length(which(supptype_finance == 1)) /
-                    length(which(supptype_finance == 1 | supptype_finance == 0)),2)
+                    sum(persnet_dataframe %>% select(name_1:name_15))
+                    ,2)
 
   supptype_health <- supptype_cols[, grepl("___4", names(supptype_cols))]
   support_health_per <-  round(length(which(supptype_health == 1)) /
-                    length(which(supptype_health == 1 | supptype_health == 0)),2)
+                    sum(persnet_dataframe %>% select(name_1:name_15))
+                    ,2)
 
   supptype_camaraderie <- supptype_cols[, grepl("___5", names(supptype_cols))]
   support_camaraderie_per <-  round(length(which(supptype_camaraderie == 1)) /
-                    length(which(supptype_camaraderie == 1 | supptype_camaraderie == 0)),2)
+                    sum(persnet_dataframe %>% select(name_1:name_15))
+                    ,2)
 
   #sex / race /race
   sex_cols <- persnet_dataframe %>% select(name1sex:name15sex)
@@ -65,28 +72,33 @@ RAW_DF_ROW2PER_DF_ROW <- function(persnet_dataframe) {
 
   relat_spouse <- realtype_cols[, grepl("___1", names(realtype_cols))]
   relation_spouse_per <-  round(length(which(relat_spouse == 1)) /
-                                    length(which(relat_spouse == 1 | relat_spouse == 0)),2)
+                                    sum(persnet_dataframe %>% select(name_1:name_15))
+                                    ,2)
 
   relat_family <- realtype_cols[, grepl("___2", names(realtype_cols))]
   relation_family_per <-  round(length(which(relat_family == 1)) /
-                                 length(which(relat_family == 1 | relat_family == 0)),2)
+                                 sum(persnet_dataframe %>% select(name_1:name_15))
+                                 ,2)
 
   relat_friend <- realtype_cols[, grepl("___3", names(realtype_cols))]
   relation_friend_per <-  round(length(which(relat_friend == 1)) /
-                                  length(which(relat_friend == 1 | relat_friend == 0)),2)
+                                  sum(persnet_dataframe %>% select(name_1:name_15))
+                                  ,2)
 
   relat_advice <- realtype_cols[, grepl("___4", names(realtype_cols))]
   relation_advice_per <-  round(length(which(relat_advice == 1)) /
-                                 length(which(relat_advice == 1 | relat_advice == 0)),2)
+                                 sum(persnet_dataframe %>% select(name_1:name_15))
+                                 ,2)
 
   relat_coworker <- realtype_cols[, grepl("___5", names(realtype_cols))]
   relat_coworker_per <-  round(length(which(relat_coworker == 1)) /
-                                      length(which(relat_coworker == 1 | relat_coworker == 0)),2)
+                                      sum(persnet_dataframe %>% select(name_1:name_15))
+                                      ,2)
 
   relat_other <- realtype_cols[, grepl("___77", names(realtype_cols))]
   relat_other_per <-  round(length(which(relat_other == 1)) /
-                                      length(which(relat_other == 1 | relat_other == 0)),2)
- #FLAG FOR AD: relattype6 MIA
+                                      sum(persnet_dataframe %>% select(name_1:name_15))
+                                      ,2)
 
   #distance / length / speak
   distance_cols <- persnet_dataframe %>% select(name1dist:name15dist)
@@ -103,7 +115,6 @@ RAW_DF_ROW2PER_DF_ROW <- function(persnet_dataframe) {
   speakweekly_per <- round(length(which(speak_cols == 1 | speak_cols == 2)) /
                              length(which(speak_cols == 1 | speak_cols == 2 | speak_cols == 3 |
                                             speak_cols == 4 | speak_cols == 99)),2)
-
 
 
   return(

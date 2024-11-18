@@ -49,6 +49,7 @@ FUNC_CREATE_ATTRIBUTE <- function(col_name,df_row_input2) {
   )
 }
 
+#works only off edge variables
 FUNCT_WRANGLE_ROW <- function(df_raw_input3){
   #this block of code creates the igraph object from a row of a persnet dataframe
   edges_variables <- select(df_raw_input3, tie1:a_tie105)
